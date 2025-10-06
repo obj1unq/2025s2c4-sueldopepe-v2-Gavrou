@@ -1,10 +1,28 @@
 import pepe.*
 
+
 describe "Sueldo Pepe" {
-	
-	test "Test 1" {
-		//TODO: Implementame
+	test "Caso 1: Pepe es cadete, tiene el bono de monto fijo y el de presentismo normal, faltó 3 días" {
+		assert.equals(20800, pepe.sueldo(cadete, bonoResultadosMontoFijo, bonoPresentismoNormal, 3))
 	}
 
-	
+	test "Caso 2: Pepe es gerente, tiene el bono de porcentaje y el de presentismo nulo" {
+		assert.equals(16500, pepe.sueldo(gerente, bonoResultadosPorcentaje, bonoPresentismoNulo, 0))
+	}
+
+	test "Caso 3: Pepe es cadete, tiene el bono por porcentaje y el presentismo normal, nunca faltó" {
+		assert.equals(24000, pepe.sueldo(cadete, bonoResultadosPorcentaje, bonoPresentismoNormal, 0))
+	}
+
+	test "Caso 4: Pepe es cadete, tiene bono por porcentaje y presentismo normal, faltó 1 día" {
+		assert.equals(23000, pepe.sueldo(cadete, bonoResultadosPorcentaje, bonoPresentismoNormal, 1))
+	}
+}
+
+describe "Sueldo Muchachada" {
+	test "Caso de prueba: Categoría medio tiempo base - cadete, Pepe tiene categoría medio tiempo, con bono de resultados por porcentaje y bono de presentismo demagógico, faltó 1 sola vez. Roque tiene bono por resultados de monto fijo. Ernesto tiene de compañero a Pepe, y bono por presentismo de ajuste." {
+		assert.equals(11500, pepe.sueldo(medioTiempo, bonoResultadosPorcentaje, bonoPresentismoDemagogico, 1))
+		assert.equals(37800, roque.sueldo(bonoResultadosMontoFijo))
+		assert.equals(10100, ernesto.sueldo(pepe.neto(medioTiempo), bonoPresentismoAjuste))
+	}
 }
